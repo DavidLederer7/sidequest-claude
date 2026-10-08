@@ -7,15 +7,10 @@ saving. Curated catalogs eventually repeat.
 
 ## Install and play
 
-This is a beta, not yet marketplace-approved. Install through your coding app's
-plugin manager or follow READ-ME-FIRST.md when using a downloadable package.
-This folder itself contains the complete plugin; no outer guide is needed
-after marketplace installation.
-
 You need **Node.js 22.13+** and a compatible local desktop coding app. No
 Sidequest account, API key, npm install, or notification permission is needed.
 
-1. Install Sidequest and restart your app.
+1. Install Sidequest through your coding app's plugin manager and restart your app.
 2. In a new **Claude Code** chat, send **`/sidequest:sidequest`**. In **Codex**,
    select Sidequest and say **“Open Sidequest.”**
 3. Choose **Play now**. To enable automatic breaks later, use
@@ -24,7 +19,7 @@ Sidequest account, API key, npm install, or notification permission is needed.
    setup test and confirm you can actually play.
 
 Installing in one app does not install in the other. Mac desktop has been
-playtested; a Windows beta tester reported success, but the full version matrix
+playtested; a Windows user reported success, but the full version matrix
 is not certified. Linux is unverified. This is not a Claude web/mobile connector.
 
 ## Controls
@@ -54,6 +49,5 @@ identifier and display name. No automatic OS notifications are used. See the
 [public privacy notice](https://sidequest.davidlederer7.chatgpt.site/privacy.html),
 its [bundled copy](PRIVACY.md), and [help](SUPPORT.md).
 
-Sidequest is proprietary and free to use under its [beta license](LICENSE),
-including while doing commercial coding work. No invitation or email acceptance
-is required for this release. Third-party licenses remain unchanged.
+Sidequest is proprietary. Use is governed by the [license](LICENSE).
+Third-party licenses remain unchanged.
