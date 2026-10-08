@@ -47,9 +47,12 @@ send the provided request in chat; copying it alone changes nothing.
 ## Data and support
 
 Progress is local to the browser/widget; no account or device sync is promised.
-The bundled game has no analytics collector or automatic report upload. Share
-links do not grant access to a private website. No automatic OS notifications
-are used. See [privacy](PRIVACY.md) and [help](SUPPORT.md).
+The bundled game has no analytics collector or automatic report upload. Shared
+links open the public [game website](https://sidequest.davidlederer7.chatgpt.site),
+which automatically submits completed scores to its leaderboard using a guest
+identifier and display name. No automatic OS notifications are used. See the
+[public privacy notice](https://sidequest.davidlederer7.chatgpt.site/privacy.html),
+its [bundled copy](PRIVACY.md), and [help](SUPPORT.md).
 
 Sidequest is proprietary and free to use under its [beta license](LICENSE),
 including while doing commercial coding work. No invitation or email acceptance

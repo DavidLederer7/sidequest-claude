@@ -10,7 +10,9 @@
     "email": "Dav.lederer@gmail.com"
   },
   "homepage": "https://sidequest.davidlederer7.chatgpt.site",
-  "repository": "https://github.com/DavidLederer7/sidequest",
+  "repository": "https://github.com/DavidLederer7/sidequest-claude",
+  "icon": "./assets/icon.svg",
+  "privacyPolicyUrl": "https://sidequest.davidlederer7.chatgpt.site/privacy.html",
   "keywords": [
     "productivity",
     "puzzles",

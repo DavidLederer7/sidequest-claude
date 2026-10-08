@@ -1,31 +1,78 @@
-# Sidequest beta data handling
+# Sidequest privacy notice
 
-Updated October 1, 2026. This notice describes the bundled local desktop game,
-not a future publicly hosted service or the coding app's own data policies.
+Updated October 8, 2026. Sidequest is operated by David Lederer. This notice
+covers the local Sidequest plugin and the public game at
+https://sidequest.davidlederer7.chatgpt.site. Contact: Dav.lederer@gmail.com.
 
-- Puzzle progress, moves, hints and completion are stored in browser storage or
-  the host's widget state when supported. Host widget state may be retained with
-  your conversation according to the host's policies. No cross-device sync is promised.
-- Preferences and automatic-opening bookkeeping are kept in `.sidequest` in your
-  user home directory, unless you configure a different state directory. The wait
-  hooks receive host event data, but the wait detector does not store your prompt
-  or source code. Bookkeeping uses session-derived keys, timing and opening status.
-- Prepared puzzle files stay in the host-authorized directory. Side-panel previews
-  may run a loopback-only server for the game and settings. Capability URLs should
-  not be included in reports or shared with other people.
-- The bundled puzzle has no Sidequest analytics collector or automatic report
-  upload. The coding host can process tool calls under its own terms.
-- Choosing Share copies or passes a challenge link and result to your chosen
-  sharing destination. Opening the website contacts its hosting service. The
-  local plugin does not make a private website public.
-- Report a problem displays copyable version/puzzle/surface details. It does not
-  attach conversation text, source code, full URLs, local file paths or session IDs.
-  You choose what to email to Dav.lederer@gmail.com for support. Emailing a report
-  sends its contents through your email provider and to the support inbox; review
-  it first and leave out private chats, source code and credentials.
+## Local plugin
 
-Uninstalling does not erase saved progress or preferences. You can remove browser
-site data, host widget/conversation data through the host, prepared puzzle files,
-and the Sidequest state directory separately when no Sidequest session is running.
-Removing shared preferences affects Sidequest in both coding apps on this device.
-No automatic retention deadline is currently enforced for local files.
+- Puzzle progress, moves, hints and completion stay in browser storage or the
+  host's widget state when supported. Widget state may be retained with your
+  conversation under the host's policies. No cross-device sync is promised.
+- Preferences and automatic-opening bookkeeping are stored in `.sidequest` in
+  your home directory, unless you configure another state directory. Hooks
+  receive host event data; the wait detector does not store prompt text or source
+  code. It stores session-derived keys, timing and opening status.
+- Prepared puzzle files stay in the host-authorized directory. Previews may use
+  a loopback-only server for the game and settings. Do not share capability URLs.
+- The bundled game does not upload scores to Sidequest's website, collect
+  analytics or automatically send support reports. Your coding host processes
+  tool calls and conversation/widget state under its own policies.
+
+## Public game website
+
+- Browser storage keeps your puzzle progress, a random guest identifier and a
+  guest or chosen display name. The identifier is not your coding-chat session ID.
+- Completing a website puzzle automatically sends its puzzle ID, guest
+  identifier, display name and move/hint/reset history to the website's score
+  service to validate the result. Opening the comparison panel sends the puzzle
+  ID and guest identifier to retrieve scores and your history.
+- The database stores the guest identifier, display name, puzzle ID, move count,
+  par, score and submission time. Its schema also supports elapsed time; Escape
+  currently records zero for that field. Move history is used for validation,
+  not saved in the score database.
+- Leaderboard names, ranks and result statistics can be viewed by other visitors.
+  Use a nickname, not personal or confidential information. The leaderboard
+  response does not expose guest identifiers. Clearing browser data does not
+  remove already submitted scores or automatically restore them on another device.
+- Hosting is provided through OpenAI Sites and Cloudflare. Serving pages and
+  score requests involves technical request information such as IP address,
+  browser information and requested URL. Providers may process operational and
+  security logs under their policies. Do not put secrets in URLs or display names.
+- Sidequest's game code does not add advertising trackers or send coding prompts
+  or source code to the website. Provider and coding-app privacy policies apply
+  separately: https://openai.com/policies/privacy-policy/
+  and https://www.cloudflare.com/privacypolicy/.
+
+## Sharing and support
+
+Share copies or passes the challenge link and any included result to your chosen
+sharing service. Recipients can play on the public website without installing the
+plugin. The shared challenge link does not include your guest identifier, coding
+conversation or solution. Your sharing service has its own privacy practices.
+
+Report a problem displays copyable version/puzzle/surface details, not an automatic
+upload. It does not attach conversation text, source code, full URLs, local paths
+or session IDs. If you email support, your address and the information you choose
+to send reach your email provider and the support inbox. Review reports first;
+leave out private chats, source code and credentials.
+
+## Retention and your choices
+
+There is currently no automatic deletion schedule for saved scores, support
+correspondence or local plugin files. Scores support comparisons and repeat play;
+support correspondence is used to answer requests and resolve issues.
+
+You can clear browser site data, remove host widget/conversation data through
+your host, and delete prepared files and the Sidequest state directory when no
+Sidequest session is running. Uninstalling alone does not erase these. Removing
+shared preferences affects both coding apps on the device. Local plugin play
+does not require submitting a website score.
+
+For questions or requests to access, correct or delete website scores or support
+information, email Dav.lederer@gmail.com. For a score request, include the public
+display name and puzzle date so we can help locate it; we may need additional
+information to verify which record is yours. Never send credentials or private
+chat transcripts. Provider-held logs and host conversation records must be
+managed through the relevant provider. Material changes will be reflected here
+with an updated date.
