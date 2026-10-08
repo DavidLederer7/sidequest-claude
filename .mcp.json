@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "sidequest": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/mcp/sidequest-mcp-app.mjs"]
+    }
+  }
+}

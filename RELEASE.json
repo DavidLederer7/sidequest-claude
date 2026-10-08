@@ -1,0 +1,23 @@
+{
+  "version": "0.5.25-beta.9",
+  "sourceCommit": "80591d5e92860e8510c2be8f560cd359afd8cbea",
+  "profile": "claude",
+  "audit": {
+    "version": "0.5.25-beta.9",
+    "files": 33,
+    "bytes": 2604746,
+    "warnings": [
+      "mcp/sidequest-mcp-app.mjs: exceeds 256 KiB; expect Claude reviewer hold"
+    ]
+  },
+  "verification": {
+    "doctor": "passed",
+    "mcp": "passed",
+    "levels": 4,
+    "nativeFragment": "prepared",
+    "fileDocument": "prepared",
+    "preferencesAcrossRestarts": "passed",
+    "installed": false,
+    "rendered": false
+  }
+}

@@ -1,0 +1,105 @@
+# Sidequest Beta Use License
+
+Version 2.0 — October 8, 2026
+
+### 1. Who and what this covers
+
+These terms are between David Lederer (the “Provider”) and a person using an official
+Sidequest distribution (the “User”). “Software” means the Sidequest
+beta software supplied with these terms, including its first-party code,
+game assets and documentation. Third-party components are addressed separately
+in section 5.
+
+### 2. Permission to use
+
+The Provider grants the User a free, non-exclusive, non-transferable permission
+to install, run and evaluate the Software on devices the User owns or is
+authorized to use, under these terms. No invitation or email acceptance is
+required. The User may make
+copies reasonably needed for installation and backup, and inspect the supplied
+source code for evaluation and troubleshooting.
+
+Playing Sidequest while doing paid or commercial coding work is permitted.
+There is no purchase requirement, subscription charge or automatic conversion
+to a paid plan under these terms.
+
+### 3. Distribution and ownership
+
+Except where applicable law or a third-party license allows otherwise, the
+User may not redistribute the Software or its source code, sublicense it,
+sell copies, or offer the Software as a hosted service without the Provider's
+written permission. The User must preserve copyright and license notices.
+
+The Provider retains the rights the Provider holds in the Software. These terms
+do not transfer ownership or grant rights in any third party's intellectual
+property. Rights not expressly granted here are reserved by their respective
+holders.
+
+### 4. Feedback and sharing results
+
+Feedback is welcome but optional. Send questions or bug reports to
+[Dav.lederer@gmail.com](mailto:Dav.lederer@gmail.com). Do not include private
+conversation transcripts, credentials, employer code or other material you are
+not authorized to disclose.
+
+The User may discuss their experience and share puzzle results, screenshots
+of the game and official challenge links. This permission does not allow sharing
+the installation package, first-party source code, access credentials or private
+host-session links. A challenge link does not grant access to a private website.
+These terms do not impose a separate nondisclosure agreement or prohibit honest
+reviews.
+
+### 5. Third-party software and host services
+
+Third-party components remain governed by their own licenses, including those
+in `THIRD-PARTY-NOTICES.md`. These terms do not narrow any rights granted by those
+licenses. If there is a conflict regarding a third-party component, that
+component's license governs it.
+
+Claude, Codex, the hosting provider and any other external service have their
+own terms, permissions and availability. This license does not grant access to
+those services or authorize bypassing their security controls.
+
+### 6. Experimental software and data
+
+The Software is experimental. Features may change or stop working, and saved
+progress may be lost. There is no promise of ongoing updates, compatibility,
+support response times or a public release. The User should keep backups of
+important work and follow the host application's security guidance.
+
+The accompanying `PRIVACY.md` describes the beta's data handling. This license
+does not authorize collection of conversation text or source code, and does not
+create an obligation to send diagnostics or feedback.
+
+To the extent permitted by applicable law, the Software is provided “as is”
+and “as available,” without express or implied warranties, including warranties
+of merchantability, fitness for a particular purpose or non-infringement. To
+the extent permitted by applicable law, the Provider is not liable for indirect,
+incidental, special or consequential damages arising from use of the Software.
+Nothing here excludes liability or rights that applicable law does not allow
+the parties to exclude.
+
+### 7. Duration
+
+Permission begins when the User accepts these terms by installing or using
+this release. It continues unless the User ends participation or materially
+violates these terms.
+The User may stop at any time by uninstalling the Software.
+
+When permission ends, the User must stop using and remove the first-party
+Software and installation copies, except for copies required to be retained
+by law. Third-party license rights remain unaffected. This does not authorize
+the Provider to remotely delete the User's files or unrelated data. Ownership,
+third-party rights and applicable warranty/liability provisions continue to
+apply after participation ends.
+
+The Provider may distribute official copies through plugin marketplaces and
+authorize those hosts to deliver installation and update copies. This does not
+grant other users permission to redistribute or relicense the Software.
+
+### 8. Changes
+
+These terms apply to the beta copy supplied with them. A later release or a
+public launch may use different terms, which must be presented separately.
+These terms do not automatically relicense previously distributed copies or
+enroll the User in future releases.

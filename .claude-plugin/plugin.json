@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "sidequest",
+  "displayName": "Sidequest",
+  "version": "0.5.25-beta.9",
+  "description": "Puzzles and brain teasers to keep your mind sharp while AI works.",
+  "author": {
+    "name": "David Lederer",
+    "url": "https://github.com/DavidLederer7",
+    "email": "Dav.lederer@gmail.com"
+  },
+  "homepage": "https://sidequest.davidlederer7.chatgpt.site",
+  "repository": "https://github.com/DavidLederer7/sidequest",
+  "keywords": [
+    "productivity",
+    "puzzles",
+    "brain-teasers",
+    "coding",
+    "breaks"
+  ]
+}
