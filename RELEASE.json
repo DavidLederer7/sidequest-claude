@@ -1,12 +1,16 @@
 {
   "version": "0.5.25-beta.9",
-  "sourceCommit": "4d7798c0fd527346e419364cf190c1f2c29f10fa",
+  "sourceCommit": "69632eb0f6505265c1380eb2d801e436b670a019",
   "profile": "claude",
   "audit": {
     "version": "0.5.25-beta.9",
     "files": 47,
-    "bytes": 2620649,
-    "warnings": []
+    "bytes": 2622816,
+    "warnings": [
+      "mcp/assets/sidequest-widget.html: exceeds 256 KiB automatic scan window; human review required",
+      "mcp/shared-XD7DXOTJ.mjs: exceeds 256 KiB automatic scan window; human review required",
+      "mcp/sidequest-mcp-app.mjs: exceeds 256 KiB automatic scan window; human review required"
+    ]
   },
   "verification": {
     "doctor": "passed",

@@ -37,12 +37,45 @@ files in `mcp/assets/`. The `validation-*` entrypoints and `shared-*` ESM module
 contain the pinned MCP SDK and its Zod v3/v4/mini compatibility dependencies.
 All code and assets ship locally; there is no runtime dependency download.
 Every distributed text file is checked against the portal's observed 1 MiB
-inspection limit. Nothing is encoded or obfuscated to avoid review.
+read limit. The portal ALSO reports a 256 KiB automatic scan window. The browser
+widget, server entrypoint and shared Zod core remain larger than that window and
+need full human inspection. The package audit reports all three explicitly.
+Nothing is encoded or obfuscated to avoid review; the existing browser widget
+uses a minified SDK bundle for delivery, as it did before this packaging change.
 
 `mcp/BUILD-MAP.json` maps generated files to their source modules. Exact dependency
 versions and licenses are in `THIRD-PARTY-NOTICES.md`. The build is reproduced
 by `scripts/bundle-mcp.mjs` in the source repository; generated modules retain
 source-module comments and are not minified by this build.
+
+## October 8 scanner findings requiring human review
+
+Revalidation of distribution commit `286695e` passed structural validation with
+two listing-field warnings and six holds (five related credential findings and
+one group of size findings). The whole-environment warning was removed.
+
+- `lib/opening-state.mjs`: the local filename identifier described above; no
+  credential-store read or network call. The manifest-level finding combines
+  this identifier with the skill's public-site fallback instructions.
+- `mcp/shared-WJZXAJVT.mjs`: Zod uses `json-schema.org` URLs as JSON Schema
+  dialect identifiers in `detectVersion()`. The `key` variables index object
+  properties and definitions, not credential stores. Comparing a schema URI
+  does not fetch it.
+- `mcp/sidequest-mcp-app.mjs`: AJV embeds a JSON Schema `$id`/`$ref` containing
+  `raw.githubusercontent.com/ajv-validator/ajv/.../data.json`. The nearby `pat`
+  variable iterates regular-expression patterns in `validatePatternProperties()`;
+  it is not a GitHub personal access token. No user PAT is requested or read.
+- `mcp/assets/sidequest-widget.html`: the reported host `${e}]` occurs in a
+  URL-parser expression that tests IPv6 syntax (`new URL`), not a network
+  request. The widget is browser code with no `child_process` or `execFile`
+  API. The bundled SDK has base64 utilities and host-security-policy text;
+  this is not evidence of executing a credential-store command. Review the
+  complete SDK-backed widget rather than assuming the heuristic is conclusive.
+
+The latter three findings became visible after extracting the previously
+uninspectable monolithic file. We have not renamed third-party identifiers,
+removed security validation, or hidden code to suppress scanner findings.
+Human review is still required; this package does not claim policy clearance.
 
 Regression checks cover the hook's import boundary, allowlisted configuration,
 omission of raw session/prompt/tool data, standalone relocated MCP startup,
