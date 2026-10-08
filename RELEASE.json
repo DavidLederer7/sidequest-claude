@@ -1,14 +1,12 @@
 {
   "version": "0.5.25-beta.9",
-  "sourceCommit": "a1d21eefea056b3a21d0784d74452c8377606fba",
+  "sourceCommit": "4d7798c0fd527346e419364cf190c1f2c29f10fa",
   "profile": "claude",
   "audit": {
     "version": "0.5.25-beta.9",
-    "files": 34,
-    "bytes": 2607946,
-    "warnings": [
-      "mcp/sidequest-mcp-app.mjs: exceeds 256 KiB; expect Claude reviewer hold"
-    ]
+    "files": 47,
+    "bytes": 2620649,
+    "warnings": []
   },
   "verification": {
     "doctor": "passed",

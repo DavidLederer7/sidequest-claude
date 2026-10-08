@@ -12,6 +12,7 @@ import {
 } from '../lib/opening-state.mjs';
 
 import { getPreferences } from '../lib/preferences.mjs';
+import { readSidequestEnvironment } from '../lib/runtime-config.mjs';
 
 export { DEFAULT_WAIT_SECONDS } from '../lib/opening-state.mjs';
 export const SIDEQUEST_URL = 'https://sidequest.davidlederer7.chatgpt.site/';
@@ -33,7 +34,7 @@ export function getWaitMode(value = process.env.SIDEQUEST_WAIT_MODE) {
 }
 
 export function getStateDirectory(
-  environment = process.env,
+  environment = readSidequestEnvironment(),
   userHome = homedir(),
 ) {
   // Use the same location in hooks and MCP, even if PLUGIN_DATA is only set
