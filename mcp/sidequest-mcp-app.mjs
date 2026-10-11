@@ -14856,7 +14856,7 @@ var plugin_default = {
   $schema: "https://json.schemastore.org/claude-code-plugin-manifest.json",
   name: "sidequest",
   displayName: "Sidequest",
-  version: "0.5.25-beta.9",
+  version: "0.5.25",
   description: "Puzzles and brain teasers to keep your mind sharp while AI works.",
   author: {
     name: "David Lederer",

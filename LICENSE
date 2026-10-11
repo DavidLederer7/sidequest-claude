@@ -1,12 +1,12 @@
-# Sidequest Beta Use License
+# Sidequest Use License
 
-Version 2.0 — October 8, 2026
+Version 2.1 — October 11, 2026
 
 ### 1. Who and what this covers
 
 These terms are between David Lederer (the “Provider”) and a person using an official
 Sidequest distribution (the “User”). “Software” means the Sidequest
-beta software supplied with these terms, including its first-party code,
+software supplied with these terms, including its first-party code,
 game assets and documentation. Third-party components are addressed separately
 in section 5.
 
@@ -60,14 +60,14 @@ Claude, Codex, the hosting provider and any other external service have their
 own terms, permissions and availability. This license does not grant access to
 those services or authorize bypassing their security controls.
 
-### 6. Experimental software and data
+### 6. Software availability and data
 
-The Software is experimental. Features may change or stop working, and saved
+Features may change or stop working, and saved
 progress may be lost. There is no promise of ongoing updates, compatibility,
-support response times or a public release. The User should keep backups of
+support response times or continued availability. The User should keep backups of
 important work and follow the host application's security guidance.
 
-The accompanying `PRIVACY.md` describes the beta's data handling. This license
+The accompanying `PRIVACY.md` describes the Software's data handling. This license
 does not authorize collection of conversation text or source code, and does not
 create an obligation to send diagnostics or feedback.
 
@@ -99,7 +99,7 @@ grant other users permission to redistribute or relicense the Software.
 
 ### 8. Changes
 
-These terms apply to the beta copy supplied with them. A later release or a
-public launch may use different terms, which must be presented separately.
+These terms apply to the copy supplied with them. A later release may use
+different terms, which must be presented separately.
 These terms do not automatically relicense previously distributed copies or
 enroll the User in future releases.

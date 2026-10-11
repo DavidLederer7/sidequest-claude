@@ -1,11 +1,11 @@
 {
-  "version": "0.5.25-beta.9",
-  "sourceCommit": "d7b31b2bf65736e97125d128906269a940aaa1d6",
+  "version": "0.5.25",
+  "sourceCommit": "eea6bd8585bbf95547545959bf6c916b806eb6cd",
   "profile": "claude",
   "audit": {
-    "version": "0.5.25-beta.9",
-    "files": 47,
-    "bytes": 2622469,
+    "version": "0.5.25",
+    "files": 48,
+    "bytes": 2623465,
     "warnings": [
       "mcp/assets/sidequest-widget.html: exceeds 256 KiB automatic scan window; human review required",
       "mcp/shared-XD7DXOTJ.mjs: exceeds 256 KiB automatic scan window; human review required",

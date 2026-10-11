@@ -1,0 +1,12 @@
+{
+  "name": "sidequest",
+  "description": "Sidequest puzzles for Claude Code.",
+  "owner": { "name": "David Lederer" },
+  "plugins": [
+    {
+      "name": "sidequest",
+      "source": "./",
+      "description": "Puzzles and brain teasers to keep your mind sharp while AI works."
+    }
+  ]
+}

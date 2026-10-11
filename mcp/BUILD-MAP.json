@@ -3,21 +3,21 @@
   "files": [
     {
       "path": "assets/sidequest-widget.html",
-      "bytes": 573721,
+      "bytes": 573823,
       "sources": [
         "public/sidequest-widget.html"
       ]
     },
     {
       "path": "assets/claude-inline-widget.html",
-      "bytes": 54248,
+      "bytes": 54350,
       "sources": [
         "plugin/skills/sidequest/assets/claude-inline-widget.html"
       ]
     },
     {
       "path": "sidequest-mcp-app.mjs",
-      "bytes": 697031,
+      "bytes": 697024,
       "sources": [
         "node_modules/ajv/dist/compile/codegen/code.js",
         "node_modules/ajv/dist/compile/codegen/scope.js",

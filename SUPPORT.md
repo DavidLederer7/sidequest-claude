@@ -1,6 +1,6 @@
 # Help and feedback
 
-Use **Report a problem** in the puzzle to copy a short report, then send it to the
+Use **Report a problem** in the puzzle to copy a short report, then send it to
 [Dav.lederer@gmail.com](mailto:Dav.lederer@gmail.com). Nothing is sent automatically.
 
 Include your coding app's name and version, what you expected, what happened,
@@ -23,6 +23,6 @@ the plugin is enabled, hooks are approved in the host, and Settings are not Off.
 Automatic opening requires completed tool work after the delay, not just thinking.
 Uninstall duplicate development copies before judging repeated openings.
 
-Beta scope: local desktop sessions. Mac has been playtested; a Windows tester
+Supported use: local desktop sessions. Mac has been playtested; a Windows tester
 reported success. Linux and a complete Windows/host version matrix are unverified.
-There is no guaranteed reply time or public marketplace listing yet.
+There is no guaranteed reply time. Host display capabilities vary by version.

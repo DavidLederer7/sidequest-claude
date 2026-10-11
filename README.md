@@ -1,53 +1,66 @@
 # Sidequest
 
-**Your agent works. You stay sharp.** Slide the blocks to free the blue one.
-Start with Easy, keep playing Medium or Hard, or tackle one Impossible puzzle
-each day. Daily selections reset at midnight New York time, including daylight
-saving. Curated catalogs eventually repeat.
+**Your agent works. You stay sharp.** Slide the gray blocks and guide the blue
+block through the exit, right beside your work in Claude Code.
+
+- **Easy, Medium, Hard:** solve a puzzle to unlock the next. Switch difficulties
+  and revisit earlier rounds without losing saved progress.
+- **Impossible:** one shared challenge each day, resetting at midnight New York
+  time. Curated puzzle catalogs eventually repeat.
+- Play on demand, get a hint, or share a spoiler-free challenge with a friend.
 
 ## Install and play
 
-You need **Node.js 22.13+** and a compatible local desktop coding app. No
-Sidequest account, API key, npm install, or notification permission is needed.
+You need **Claude Code Desktop** and [Node.js 22.13+](https://nodejs.org/).
+No Sidequest account, API key, or dependency installation is needed.
 
-1. Install Sidequest through your coding app's plugin manager and restart your app.
-2. In a new **Claude Code** chat, send **`/sidequest:sidequest`**. In **Codex**,
-   select Sidequest and say **“Open Sidequest.”**
-3. Choose **Play now**. To enable automatic breaks later, use
-   **Settings (gear) → Automatic breaks setup** and follow the chat request.
-4. Review host permission prompts yourself. Keep the chat visible during the
-   setup test and confirm you can actually play.
+1. In a Claude Code chat, add the Sidequest repository:
+   ```text
+   /plugin marketplace add DavidLederer7/sidequest-claude
+   ```
+2. Open its installation page and choose **Install**:
+   ```text
+   /plugin install sidequest@sidequest
+   ```
+3. Restart Claude, start a new Code chat, and send **`/sidequest:sidequest`**.
+4. Choose **Play now**. Review any host permission prompts yourself.
 
-Installing in one app does not install in the other. Mac desktop has been
-playtested; a Windows user reported success, but the full version matrix
-is not certified. Linux is unverified. This is not a Claude web/mobile connector.
+This repository must be accessible to your GitHub account. If you already
+installed Sidequest through Claude's directory, skip steps 1–2; do not install
+a second copy. This package is for Claude Code, not ordinary Claude web/mobile
+chat. Tested desktop versions display the puzzle in a rendered Files pane;
+display capabilities depend on the host version.
 
-## Controls
+## Controls and automatic breaks
 
-- Drag, or select a block and click a valid destination. Arrow keys move a
+- Drag a block, or select it and click a valid destination. Arrow keys move a
   focused block; Shift moves it as far as possible.
-- Hint shows the next move. Undo restores positions without erasing move count;
-  Reset starts a new attempt and retains disclosed hints.
-- Solve Easy, Medium, or Hard to unlock Next. Switch difficulties freely.
-- Minimize remembers a compact view; Pause temporarily suspends automatic
-  openings. Settings offers Off, a delay, and Small/Medium/Large sizes.
+- **Hint** shows the next move. **Undo** keeps the move count; **Reset** starts
+  a new attempt while retaining disclosed hints.
+- **Minimize** remembers a compact view. **Pause** temporarily suspends automatic
+  openings. Settings offers **Off**, a delay, and Small/Medium/Large sizes.
 
-Automatic opening is requested at the next completed tool step after the delay
-(enabled at 15 seconds by default, subject to host hook permissions), not during
-uninterrupted thinking. Tested Codex hosts
-support transcript rendering; tested Claude Code hosts support rendered Files
-panes. Display routes depend on host capabilities. If settings are disconnected,
-send the provided request in chat; copying it alone changes nothing.
+Automatic breaks default to **on, after 15 seconds**, subject to host hook
+permissions. **Play now does not change that setting.** Use the gear icon →
+**Automatic breaks setup** to check setup or change the delay; choose **Off**
+for manual play only. Openings are requested at the next completed tool step,
+not during uninterrupted thinking. Keep the chat visible during a setup test.
+If settings are disconnected, send the provided request in chat; copying it
+alone changes nothing.
 
-## Data and support
+## Privacy and support
 
-Progress is local to the browser/widget; no account or device sync is promised.
-The bundled game has no analytics collector or automatic report upload. Shared
-links open the public [game website](https://sidequest.davidlederer7.chatgpt.site),
-which automatically submits completed scores to its leaderboard using a guest
-identifier and display name. No automatic OS notifications are used. See the
-[public privacy notice](https://sidequest.davidlederer7.chatgpt.site/privacy.html),
-its [bundled copy](PRIVACY.md), and [help](SUPPORT.md).
+Progress stays in the browser/widget; no account or cross-device sync is promised.
+The bundled game has no analytics collector, automatic report upload, or OS
+notifications. Shared links open the public [game website](https://sidequest.davidlederer7.chatgpt.site),
+which automatically submits completed scores using a guest identifier and
+display name. Read the [public privacy notice](https://sidequest.davidlederer7.chatgpt.site/privacy.html)
+or its [bundled copy](PRIVACY.md).
+
+For help, see [troubleshooting](SUPPORT.md) or email
+[Dav.lederer@gmail.com](mailto:Dav.lederer@gmail.com).
+Mac desktop has been playtested; a Windows user reported success. The full
+Windows/app version matrix and Linux are unverified.
 
 Sidequest is proprietary. Use is governed by the [license](LICENSE).
-Third-party licenses remain unchanged.
+[Third-party licenses](THIRD-PARTY-NOTICES.md) remain unchanged.
