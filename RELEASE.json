@@ -6,7 +6,7 @@
   "audit": {
     "version": "0.5.25",
     "files": 53,
-    "bytes": 2652924,
+    "bytes": 2656027,
     "warnings": [
       "mcp/assets/sidequest-widget.html: exceeds 256 KiB automatic scan window; human review required",
       "mcp/shared-XD7DXOTJ.mjs: exceeds 256 KiB automatic scan window; human review required",

@@ -17,7 +17,7 @@
     },
     {
       "path": "sidequest-mcp-app.mjs",
-      "bytes": 697388,
+      "bytes": 700491,
       "sources": [
         "node_modules/ajv/dist/compile/codegen/code.js",
         "node_modules/ajv/dist/compile/codegen/scope.js",

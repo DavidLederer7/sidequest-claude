@@ -226,7 +226,7 @@ the full license text.
 
 ---
 
-## @modelcontextprotocol/sdk 1.30.0
+## @modelcontextprotocol/sdk 1.32.1
 
 License: MIT
 
@@ -343,7 +343,7 @@ SOFTWARE.
 
 ---
 
-## fast-uri 3.1.7
+## fast-uri 3.1.8
 
 License: BSD-3-Clause
 
