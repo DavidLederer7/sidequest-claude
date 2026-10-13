@@ -1,6 +1,6 @@
 # Sidequest privacy notice
 
-Updated October 8, 2026. Sidequest is operated by David Lederer. This notice
+Updated October 12, 2026. Sidequest is operated by David Lederer. This notice
 covers the local Sidequest plugin and the public game at
 https://sidequest.davidlederer7.chatgpt.site. Contact: Dav.lederer@gmail.com.
 
@@ -15,9 +15,27 @@ https://sidequest.davidlederer7.chatgpt.site. Contact: Dav.lederer@gmail.com.
   code. It stores session-derived keys, timing and opening status.
 - Prepared puzzle files stay in the host-authorized directory. Previews may use
   a loopback-only server for the game and settings. Do not share capability URLs.
+- The native Claude terminal pane keeps game progress in memory for the session.
+  Its separate break preferences are stored in Claude's plugin store. Its timer
+  sends no network requests or model messages. A Sidequest-only session flag
+  prevents classic hooks from also opening a puzzle; it is not a credential.
 - The bundled game does not upload scores to Sidequest's website, collect
   analytics or automatically send support reports. Your coding host processes
   tool calls and conversation/widget state under its own policies.
+
+## Remote chat connector
+
+The optional hosted `/mcp` connector provides puzzles and validates completed
+move histories. Opening a puzzle sends a tool request without conversation text
+or source code. Result validation sends the puzzle ID and up to 2,000 game events
+(moves, undo, hint and reset). The handler processes these in memory and does not
+save them, submit leaderboard scores, read device files, or change automatic-break
+settings. Puzzle progress remains in the host/browser when supported. The Claude
+connector is hosted at `sidequest-claude-mcp.davidlederer7.workers.dev` on
+Cloudflare Workers and does not require a Sidequest account or API key.
+Sidequest does not store connector tokens or use hosting identity headers.
+Hosting providers may retain technical request
+logs under their policies. Chat host policies still apply to conversations.
 
 ## Public game website
 

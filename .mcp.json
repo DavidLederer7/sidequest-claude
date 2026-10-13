@@ -3,6 +3,10 @@
     "sidequest": {
       "command": "node",
       "args": ["${CLAUDE_PLUGIN_ROOT}/mcp/sidequest-mcp-app.mjs"]
+    },
+    "sidequest-chat": {
+      "type": "http",
+      "url": "https://sidequest-claude-mcp.davidlederer7.workers.dev/mcp"
     }
   }
 }

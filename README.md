@@ -1,66 +1,75 @@
 # Sidequest
 
-**Your agent works. You stay sharp.** Slide the gray blocks and guide the blue
-block through the exit, right beside your work in Claude Code.
-
-- **Easy, Medium, Hard:** solve a puzzle to unlock the next. Switch difficulties
-  and revisit earlier rounds without losing saved progress.
-- **Impossible:** one shared challenge each day, resetting at midnight New York
-  time. Curated puzzle catalogs eventually repeat.
-- Play on demand, get a hint, or share a spoiler-free challenge with a friend.
+**Your agent works. You stay sharp.** Take a puzzle break without leaving Claude.
+Slide the blocks to clear a path to the exit. Play Easy, Medium or Hard rounds,
+or try the daily Impossible challenge. Hints, undo and shareable challenges are
+included. There is no time limit and no Sidequest account or API key.
 
 ## Install and play
 
-You need **Claude Code Desktop** and [Node.js 22.13+](https://nodejs.org/).
-No Sidequest account, API key, or dependency installation is needed.
+1. Add **Sidequest** through Claude's plugin manager and review its permissions.
+   If already installed, update that copy rather than installing another.
+2. In the plugin's **Connectors** tab, connect **sidequest-chat** for inline
+   play in Chat and Cowork. No Sidequest login is needed.
+3. Start a new conversation and follow the instruction for your app below.
 
-1. In a Claude Code chat, add the Sidequest repository:
-   ```text
-   /plugin marketplace add DavidLederer7/sidequest-claude
-   ```
-2. Open its installation page and choose **Install**:
-   ```text
-   /plugin install sidequest@sidequest
-   ```
-3. Restart Claude, start a new Code chat, and send **`/sidequest:sidequest`**.
-4. Choose **Play now**. Review any host permission prompts yourself.
+| Where you play | How to open | Automatic breaks |
+| --- | --- | --- |
+| Claude Chat | Ask “Open Sidequest” | Not supported; open on request |
+| Cowork | Ask “Open Sidequest” | With the full plugin and approved hooks |
+| Claude Code desktop | Send `/sidequest:sidequest` | With approved hooks; opens in the Files pane |
+| Claude Code terminal | Enter `/sidequest-terminal` | Turn on in the game's Settings |
 
-This repository must be accessible to your GitHub account. If you already
-installed Sidequest through Claude's directory, skip steps 1–2; do not install
-a second copy. This package is for Claude Code, not ordinary Claude web/mobile
-chat. Tested desktop versions display the puzzle in a rendered Files pane;
-display capabilities depend on the host version.
+Code/Cowork local tools require [Node.js 22.13+](https://nodejs.org/).
+The terminal pane requires **Claude Code 2.1.287+**, enabled native mods, and a
+trusted workspace. Allow at least 41 columns and 30 rows; a narrow pane may
+need more height. Host or organization restrictions still apply.
 
-## Controls and automatic breaks
+**Installing from GitHub instead?** In Claude Code, run these commands, then
+restart Claude. Skip this if you installed through its plugin manager:
 
-- Drag a block, or select it and click a valid destination. Arrow keys move a
-  focused block; Shift moves it as far as possible.
-- **Hint** shows the next move. **Undo** keeps the move count; **Reset** starts
-  a new attempt while retaining disclosed hints.
-- **Minimize** remembers a compact view. **Pause** temporarily suspends automatic
-  openings. Settings offers **Off**, a delay, and Small/Medium/Large sizes.
+```text
+/plugin marketplace add DavidLederer7/sidequest-claude
+/plugin install sidequest@sidequest
+```
 
-Automatic breaks default to **on, after 15 seconds**, subject to host hook
-permissions. **Play now does not change that setting.** Use the gear icon →
-**Automatic breaks setup** to check setup or change the delay; choose **Off**
-for manual play only. Openings are requested at the next completed tool step,
-not during uninterrupted thinking. Keep the chat visible during a setup test.
-If settings are disconnected, send the provided request in chat; copying it
-alone changes nothing.
+## Play your way
 
-## Privacy and support
+- **Graphical game:** drag a block, or select it and click its destination.
+  **Terminal:** click a block's label, then a direction. Keyboard help is built in.
+- Click **Hint** if stuck. Solve a regular round to unlock the next. Impossible
+  changes at midnight New York time; curated puzzle catalogs eventually repeat.
+- **Minimize** keeps the game compact. In the terminal, Minimize or focused
+  **Esc** hides it until you choose Play again. **Pause** suspends automatic
+  openings; **Off** disables them.
 
-Progress stays in the browser/widget; no account or cross-device sync is promised.
-The bundled game has no analytics collector, automatic report upload, or OS
-notifications. Shared links open the public [game website](https://sidequest.davidlederer7.chatgpt.site),
-which automatically submits completed scores using a guest identifier and
-display name. Read the [public privacy notice](https://sidequest.davidlederer7.chatgpt.site/privacy.html)
-or its [bundled copy](PRIVACY.md).
+## Automatic breaks
 
-For help, see [troubleshooting](SUPPORT.md) or email
+Code desktop and Cowork hooks default to **15 seconds**, requesting a puzzle
+at the next completed tool step. **Play now does not change** that preference.
+Ask Claude to check setup or change the delay, and confirm that a puzzle appears.
+
+Terminal breaks start **Off**. Choose **Settings → After 15s, 30s or 60s** to
+open during a longer task without taking keyboard focus. Terminal settings are
+separate, and terminal puzzle progress lasts for the current session.
+
+Chat has no automatic timer. The remote game cannot change local hook settings;
+in Cowork, ask the full plugin to pause or change its breaks. There is no promised
+cross-device sync. Desktop/Cowork/terminal have been playtested on Mac. Earlier
+desktop builds worked for a Windows tester; the new terminal pane on Windows,
+Linux, and mobile play are not yet verified.
+
+## Privacy and help
+
+Local play does not upload scores, prompts or source code. The hosted connector
+receives puzzle requests and move histories for validation, not conversation
+text. Shared links open the [public game](https://sidequest.davidlederer7.chatgpt.site),
+where completed scores are submitted to a leaderboard under a guest name.
+See the [privacy notice](PRIVACY.md) and
+[public privacy notice](https://sidequest.davidlederer7.chatgpt.site/privacy.html)
+for storage and hosting details.
+
+Need help? Read [Support](SUPPORT.md) or email
 [Dav.lederer@gmail.com](mailto:Dav.lederer@gmail.com).
-Mac desktop has been playtested; a Windows user reported success. The full
-Windows/app version matrix and Linux are unverified.
-
-Sidequest is proprietary. Use is governed by the [license](LICENSE).
+Sidequest is proprietary and governed by its [license](LICENSE).
 [Third-party licenses](THIRD-PARTY-NOTICES.md) remain unchanged.

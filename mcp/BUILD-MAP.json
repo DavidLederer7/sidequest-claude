@@ -3,21 +3,21 @@
   "files": [
     {
       "path": "assets/sidequest-widget.html",
-      "bytes": 573823,
+      "bytes": 574963,
       "sources": [
         "public/sidequest-widget.html"
       ]
     },
     {
       "path": "assets/claude-inline-widget.html",
-      "bytes": 54350,
+      "bytes": 54564,
       "sources": [
         "plugin/skills/sidequest/assets/claude-inline-widget.html"
       ]
     },
     {
       "path": "sidequest-mcp-app.mjs",
-      "bytes": 697024,
+      "bytes": 697388,
       "sources": [
         "node_modules/ajv/dist/compile/codegen/code.js",
         "node_modules/ajv/dist/compile/codegen/scope.js",
@@ -152,6 +152,7 @@
         "plugin/lib/escape-impossible-variety.mjs",
         "plugin/lib/escape.mjs",
         "plugin/lib/escape-score.mjs",
+        "game-tools.ts",
         "plugin/lib/opening-controller.mjs",
         "public/sidequest-widget.html",
         "plugin/skills/sidequest/assets/claude-inline-widget.html",

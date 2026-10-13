@@ -1,7 +1,29 @@
 # Sidequest review notes
 
-This plugin needs no API key, account credential or remote MCP connection.
-No `user_config` credential is required or requested.
+This plugin needs no Sidequest API key or account credential. Its declared
+`sidequest-chat` remote MCP connection powers inline Chat/Cowork play; local
+Code play uses the bundled server or native terminal pane. No `user_config`
+credential is required or requested.
+
+## Native terminal and remote connector
+
+The Claude package combines the four classic lifecycle hooks with
+`hooks/terminal/register.mjs`. The native module is active only in interactive
+terminal sessions. It uses the bundled puzzle rules, a host-managed local
+preference store, and an opt-in timer. It sets only `SIDEQUEST_NATIVE_TERMINAL`
+in the current process so Sidequest's classic start/check hooks do not create
+duplicate openings. It does not suppress other plugins or alter trust settings.
+It makes no network requests and does not download dependencies or run model
+turns. Terminal progress is session-only. It requires Claude Code 2.1.287+ and
+remains subject to the host's mod restrictions.
+
+The declared remote endpoint is
+`https://sidequest-claude-mcp.davidlederer7.workers.dev/mcp`. It serves puzzle
+requests and validates move histories in memory. It does not receive hook
+tickets, credentials, prompts or source code, persist scores, or edit local
+preferences. Regular Chat opens on request only. Cowork automatic inline play
+was confirmed by the user on October 11; it requires the full plugin, not just
+the connector. See `PRIVACY.md` for hosting and public-website data handling.
 
 ## Local hook data flow
 
@@ -85,8 +107,8 @@ approval or a claim that the hosting application's own data policies do not appl
 
 ## Product scope and public website
 
-The local stdio server is for supported desktop coding hosts, not a hosted
-claude.ai Chat connector. Host permissions remain the user's responsibility.
+The local stdio server is for supported coding hosts; the separately declared
+remote connector is for Chat/Cowork inline play. Host permissions remain the user's responsibility.
 Optional opening instructions do not approve hooks or bypass permissions.
 
 The public game website has its own score service. The bundled local game does

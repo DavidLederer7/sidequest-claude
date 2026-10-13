@@ -76,10 +76,17 @@ use an already permitted file-pane route without settings or record failure.
 
 ## Automatic opening protocol
 
-A trusted plugin PostToolUse reminder includes an opaque opening ticket. Use
-the Sidequest MCP tool `sidequest_opening` with `{action, ticket}` for each
-operation. Fully quoted POSIX controller commands are a fallback only when
-that tool is absent; never escalate terminal permissions for this optional
+A trusted plugin PostToolUse reminder includes an opaque opening ticket.
+Choose a controller in the hook's runtime BEFORE claiming it. In Cowork, hooks
+can run in a cloud sandbox while device-forwarded MCP tools run on the Mac:
+use the hook's fully quoted controller command in that same sandbox, with its
+exact script and state-directory arguments. Do not send that ticket to a
+device-forwarded `sidequest_opening` tool. In other same-runtime hosts, prefer
+the Sidequest MCP tool `sidequest_opening` with `{action, ticket}`; the quoted
+command is a fallback if that tool is absent. Use the SAME controller, runtime
+and directory for all operations; replace only the action in the quoted command.
+Never guess paths, copy state across machines, or retry a rejected ticket using
+another controller. Never escalate terminal permissions for this optional
 break. Follow the protocol, including `begin`
 and the freshness `check` immediately before a UI call. Proceed only when
 each returns `proceed: true`. Never invent tickets or reuse an earlier turn's
@@ -244,6 +251,51 @@ the user can open it in their app's browser if available.
 
 ## Terminal-only hosts
 
-For a manual request, offer `sidequest --terminal` in a free terminal or split
-pane. Do not take over the agent's working terminal with an interactive puzzle.
-Use `sidequest` (system browser) only when the user chooses that option.
+In Claude Code 2.1.287+ with the native module enabled, tell the user to enter
+`/sidequest-terminal` to open the native pane. It ships inside this Claude
+plugin; no separate prototype install or special launcher is needed. The user
+clicks a block label and a direction; Keyboard help explains optional shortcuts.
+Minimize or focused Esc hides the pane and keeps it hidden until Play or the
+command is used again. Terminal automatic breaks start Off and are configured
+inside its Settings (15/30/60 seconds, pause, Off). They use a native timer,
+not classic hook tickets, and do not take keyboard focus. Terminal settings
+are separate from desktop/Cowork preferences, and progress is session-only.
+Do not use the graphical preferences tools to claim a terminal setting changed.
+The native module marks its own process so classic Sidequest start/check hooks
+stay silent; never set that flag yourself or change trust/host settings.
+
+If native mods are unavailable, for a manual request offer the public game link
+or the bundled standalone terminal game:
+`node "<plugin-root>/scripts/play-terminal.mjs"` in a separate terminal or split
+pane. Resolve `<plugin-root>` to the actual installed plugin directory (two levels
+above this skill). This entrypoint ships in the Claude package; it requires no
+global `sidequest` command. Never run the interactive game inside the agent's
+working tool terminal. Tell the user to type `h` for help and `q` to quit.
+Do not claim a terminal can render the graphical MCP App or a desktop file pane.
+For automatic tickets, do not launch an OS browser or steal the terminal. If no
+permitted display exists, record `failed` and continue the original task quietly.
+
+## Regular Claude chat and Cowork
+
+Regular chat ignores local plugin hooks and local command-based MCP servers.
+Use the connected remote game connector when available. Its `open_sidequest`
+tool is on-demand; it never enables automatic breaks or changes device settings.
+If the connector is not connected, explain the Connectors setup or offer the
+public game link. Never say a link is an embedded game. A permission denial ends
+the attempt. Do not promise automatic timing in regular chat.
+
+Cowork supports local MCP servers and hooks. The connected `sidequest-chat`
+remote `open_sidequest` renderer was visibly tested in Cowork on October 11.
+For the `auto` or `transcript` preference, use that renderer for a manual request
+or after a fresh automatic-opening ticket. Use the hook-runtime controller
+command for begin, freshness checking immediately before rendering, and the
+outcome; device-forwarded tools may run on a different machine. Only use
+preference tools that share the hook runtime for the delay, Off and pause;
+do not claim a Mac preference change affects Cowork's cloud sandbox. The remote connector
+alone does not install or enable hooks and cannot pause local hooks. Do not
+assume Code-specific file-pane tools exist in Cowork. Respect explicit side-panel
+preferences and all permissions; never duplicate an ambiguous opening.
+Record an automatic opening as uncertain unless visibility was actually observed.
+Manual rendering and a hook-triggered Cowork opening were confirmed playable
+by the user on October 11. That establishes the tested flow, not visibility in
+every later session; continue to verify fresh ticket outcomes conservatively.

@@ -14835,6 +14835,156 @@ function validEscapeId(id) {
   return isDateKey(date) && date >= "2026-09-20" && date <= getDailyKey();
 }
 
+// game-tools.ts
+var SIDEQUEST_LIVE_URL = "https://sidequest.davidlederer7.chatgpt.site";
+var SIDEQUEST_WIDGET_URI = "ui://sidequest/escape.html";
+function registerGameTools(server, { widgetHtml: widgetHtml2, localTools = false, preferences = () => ({}), domain = "" }) {
+  N3(
+    server,
+    "Sidequest",
+    SIDEQUEST_WIDGET_URI,
+    {
+      description: "A self-contained sliding-block puzzle rendered inside an MCP Apps host.",
+      mimeType: p,
+      _meta: {
+        ui: {
+          prefersBorder: true,
+          ...domain ? { domain } : {}
+        }
+      }
+    },
+    async () => ({
+      contents: [
+        {
+          uri: SIDEQUEST_WIDGET_URI,
+          mimeType: p,
+          text: widgetHtml2,
+          _meta: {
+            ui: {
+              prefersBorder: true,
+              ...domain ? { domain } : {}
+            }
+          }
+        }
+      ]
+    })
+  );
+  K3(
+    server,
+    "open_sidequest",
+    {
+      title: "Open today's Sidequest",
+      description: "Provide today's Sidequest puzzle and MCP App UI resource. Renders inside the conversation only in hosts with confirmed MCP Apps support; tool availability alone does not prove rendering. Claude Code should use prepare_sidequest_file and its rendered Files pane when MCP Apps are not supported.",
+      annotations: {
+        readOnlyHint: true,
+        destructiveHint: false,
+        idempotentHint: true,
+        openWorldHint: false
+      },
+      _meta: {
+        ui: {
+          resourceUri: SIDEQUEST_WIDGET_URI,
+          visibility: ["model", "app"]
+        },
+        // Optional host entrypoint, not a promise of automatic opening or visibility.
+        "openai/ui": { entrypoints: [{ type: "thread" }] }
+      }
+    },
+    async () => {
+      const dateKey = getDailyKey();
+      const dailyChallenges = createDailySet(dateKey);
+      const challenge = {
+        ...dailyChallenges[0],
+        dailyChallenges,
+        settingsAvailable: localTools,
+        ...localTools ? { puzzleSize: preferences().puzzleSize, displayMode: preferences().displayMode } : {}
+      };
+      return {
+        content: [
+          {
+            type: "text",
+            text: `Prepared Sidequest #${challenge.puzzleNumber} (par ${challenge.par}). The host must render the attached UI resource; this response alone does not confirm that a puzzle is visible. ` + (localTools ? `If no puzzle rendered in Claude Code, discover its show_pane tool and use prepare_sidequest_file in the existing authorized session scratch directory, then display the returned path in the file pane. Only consider the built-in browser if local rendering is unavailable. ` : `If no puzzle rendered, explain that this host did not display the MCP App; do not claim it is open. `) + `A permission denial ends the attempt; do not try another route to bypass it.`
+          }
+        ],
+        structuredContent: {
+          challenge,
+          liveUrl: SIDEQUEST_LIVE_URL
+        }
+      };
+    }
+  );
+  K3(
+    server,
+    "record_sidequest_result",
+    {
+      title: "Record Sidequest result",
+      description: "Validate a completed Escape result in the current embedded session; not a leaderboard submission.",
+      inputSchema: {
+        puzzleId: external_exports.string(),
+        events: external_exports.array(
+          external_exports.discriminatedUnion("type", [
+            external_exports.object({
+              type: external_exports.literal("slide"),
+              block: external_exports.number().int().nonnegative(),
+              to: external_exports.number().int().min(0).max(5)
+            }),
+            external_exports.object({ type: external_exports.literal("undo") }),
+            external_exports.object({ type: external_exports.literal("hint") }),
+            external_exports.object({ type: external_exports.literal("reset") })
+          ])
+        ).max(2e3)
+      },
+      annotations: {
+        readOnlyHint: false,
+        destructiveHint: false,
+        idempotentHint: true,
+        openWorldHint: false
+      },
+      _meta: {
+        ui: {
+          resourceUri: SIDEQUEST_WIDGET_URI,
+          visibility: ["app"]
+        }
+      }
+    },
+    async ({ puzzleId, events }) => {
+      try {
+        if (!validEscapeId(puzzleId)) throw new Error("Invalid puzzle date.");
+        const challenge = challengeFromId(puzzleId);
+        const state = replayEscape(challenge, events);
+        if (!state.won) throw new Error("Puzzle is not solved.");
+        return {
+          content: [
+            {
+              type: "text",
+              text: `Escape complete in ${state.moves} moves with ${state.hints} hints. Validated only; no leaderboard submission or server-side save.`
+            }
+          ],
+          structuredContent: {
+            result: {
+              puzzleId,
+              moves: state.moves,
+              hints: state.hints,
+              par: challenge.par,
+              deltaToPar: state.moves - challenge.par
+            }
+          }
+        };
+      } catch (error) {
+        return {
+          isError: true,
+          content: [
+            {
+              type: "text",
+              text: error instanceof Error ? error.message : "Invalid result."
+            }
+          ]
+        };
+      }
+    }
+  );
+}
+
 // ../../plugins/sidequest/lib/opening-controller.mjs
 async function controlOpening(action, ticket) {
   try {
@@ -15167,8 +15317,6 @@ async function prepareGame({
 // server.ts
 var widgetHtml = readFileSync3(new URL(sidequest_widget_default, import.meta.url), "utf8");
 var nativeTemplate = readFileSync3(new URL(claude_inline_widget_default, import.meta.url), "utf8");
-var SIDEQUEST_LIVE_URL = "https://sidequest.davidlederer7.chatgpt.site";
-var SIDEQUEST_WIDGET_URI = "ui://sidequest/escape.html";
 function savedPuzzleSize() {
   try {
     return getPreferences().puzzleSize;
@@ -15341,148 +15489,7 @@ function createSidequestServer({ localTools = true } = {}) {
         };
       }
     );
-  N3(
-    server,
-    "Sidequest",
-    SIDEQUEST_WIDGET_URI,
-    {
-      description: "A self-contained sliding-block puzzle rendered inside an MCP Apps host.",
-      mimeType: p,
-      _meta: {
-        ui: {
-          prefersBorder: true
-        }
-      }
-    },
-    async () => ({
-      contents: [
-        {
-          uri: SIDEQUEST_WIDGET_URI,
-          mimeType: p,
-          text: widgetHtml,
-          _meta: {
-            ui: {
-              prefersBorder: true
-            }
-          }
-        }
-      ]
-    })
-  );
-  K3(
-    server,
-    "open_sidequest",
-    {
-      title: "Open today's Sidequest",
-      description: "Provide today's Sidequest puzzle and MCP App UI resource. Renders inside the conversation only in hosts with confirmed MCP Apps support; tool availability alone does not prove rendering. Claude Code should use prepare_sidequest_file and its rendered Files pane when MCP Apps are not supported.",
-      annotations: {
-        readOnlyHint: true,
-        destructiveHint: false,
-        idempotentHint: true,
-        openWorldHint: false
-      },
-      _meta: {
-        ui: {
-          resourceUri: SIDEQUEST_WIDGET_URI,
-          visibility: ["model", "app"]
-        },
-        // Optional host entrypoint, not a promise of automatic opening or visibility.
-        "openai/ui": { entrypoints: [{ type: "thread" }] }
-      }
-    },
-    async () => {
-      const dateKey = getDailyKey();
-      const dailyChallenges = createDailySet(dateKey);
-      const challenge = {
-        ...dailyChallenges[0],
-        dailyChallenges,
-        settingsAvailable: localTools,
-        ...localTools ? { puzzleSize: savedPuzzleSize(), displayMode: savedDisplayMode() } : {}
-      };
-      return {
-        content: [
-          {
-            type: "text",
-            text: `Prepared Sidequest #${challenge.puzzleNumber} (par ${challenge.par}). The host must render the attached UI resource; this response alone does not confirm that a puzzle is visible. ` + (localTools ? `If no puzzle rendered in Claude Code, discover its show_pane tool and use prepare_sidequest_file in the existing authorized session scratch directory, then display the returned path in the file pane. Only consider the built-in browser if local rendering is unavailable. ` : `If no puzzle rendered, explain that this host did not display the MCP App; do not claim it is open. `) + `A permission denial ends the attempt; do not try another route to bypass it.`
-          }
-        ],
-        structuredContent: {
-          challenge,
-          liveUrl: SIDEQUEST_LIVE_URL
-        }
-      };
-    }
-  );
-  K3(
-    server,
-    "record_sidequest_result",
-    {
-      title: "Record Sidequest result",
-      description: "Validate a completed Escape result in the current embedded session; not a leaderboard submission.",
-      inputSchema: {
-        puzzleId: external_exports.string(),
-        events: external_exports.array(
-          external_exports.discriminatedUnion("type", [
-            external_exports.object({
-              type: external_exports.literal("slide"),
-              block: external_exports.number().int().nonnegative(),
-              to: external_exports.number().int().min(0).max(5)
-            }),
-            external_exports.object({ type: external_exports.literal("undo") }),
-            external_exports.object({ type: external_exports.literal("hint") }),
-            external_exports.object({ type: external_exports.literal("reset") })
-          ])
-        ).max(2e3)
-      },
-      annotations: {
-        readOnlyHint: false,
-        destructiveHint: false,
-        idempotentHint: true,
-        openWorldHint: false
-      },
-      _meta: {
-        ui: {
-          resourceUri: SIDEQUEST_WIDGET_URI,
-          visibility: ["app"]
-        }
-      }
-    },
-    async ({ puzzleId, events }) => {
-      try {
-        if (!validEscapeId(puzzleId)) throw new Error("Invalid puzzle date.");
-        const challenge = challengeFromId(puzzleId);
-        const state = replayEscape(challenge, events);
-        if (!state.won) throw new Error("Puzzle is not solved.");
-        return {
-          content: [
-            {
-              type: "text",
-              text: `Escape complete in ${state.moves} moves with ${state.hints} hints. Saved on this device only.`
-            }
-          ],
-          structuredContent: {
-            result: {
-              puzzleId,
-              moves: state.moves,
-              hints: state.hints,
-              par: challenge.par,
-              deltaToPar: state.moves - challenge.par
-            }
-          }
-        };
-      } catch (error) {
-        return {
-          isError: true,
-          content: [
-            {
-              type: "text",
-              text: error instanceof Error ? error.message : "Invalid result."
-            }
-          ]
-        };
-      }
-    }
-  );
+  registerGameTools(server, { widgetHtml, localTools, preferences: getPreferences });
   server.server.onclose = () => {
     if (localBridge)
       void localBridge.then((value) => value.close()).catch(() => {
